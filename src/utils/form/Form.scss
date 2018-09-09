@@ -1,0 +1,13 @@
+@import '../variables.scss';
+
+.form-pd{
+    & input:focus {
+        border-color: $primary-color;
+    }
+
+    & .button{
+        background-color: $primary-color;
+        border-color: $primary-color;
+        margin-left: 5px;
+    }
+}
