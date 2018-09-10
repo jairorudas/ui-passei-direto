@@ -3,6 +3,7 @@ import lt from 'localStorage';
 
 import './card.scss'
 import If from '../if'
+import '../utilsClass.scss'
 
 export default class Card extends Component {
     constructor(props){
@@ -11,8 +12,12 @@ export default class Card extends Component {
     }
 
     like(item){
-        let newLikes = (JSON.parse(lt.getItem('likes'))).concat([item]);
-        lt.setItem('likes', JSON.stringify(newLikes))
+        let likes = JSON.parse(lt.getItem('likes'))
+        let exist = likes.find(x => (x.Id === item.Id))
+        if(exist === undefined){
+            lt.setItem('likes', JSON.stringify((likes).concat([item])))
+        }
+        
     }
 
     deleteItem(item){
@@ -34,7 +39,7 @@ export default class Card extends Component {
     
     renderCards = () => {
         return this.state.data.map((item, i) => (
-            <div key={i} className="card column">
+            <div key={i} className="card">
                 <input className="card-icon-check" type="checkbox" 
                         onClick={() => this.like(item)} />
                 
@@ -63,7 +68,7 @@ export default class Card extends Component {
 
     render(){
         return (
-        <div className="row">
+        <div className=" flex ">
             {this.renderCards()}
         </div>
     )}
