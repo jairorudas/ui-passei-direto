@@ -11,7 +11,7 @@ export default (props) => {
                     onChange={props.changeString}
                     value={props.value}
                     name="buscar" 
-                    placeholder="Digite o material que deseja." />
+                    placeholder="Ex: Psicologia, Engenharia, Cozinha." />
             <button className="button column-25" typeof="submit" >Buscar!</button>
         </div>
     </form> 
