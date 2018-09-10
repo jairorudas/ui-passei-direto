@@ -4,7 +4,7 @@
     border: 1px solid $primary-border-color;
     border-radius: 8px;
     box-shadow: 0px 4px 7px 3px $primary-shadow ;
-    margin: 10px 5px;
+    margin: 10px 8px;
     position: relative;
     padding: 0 5px;
     min-width: 300px;
@@ -54,6 +54,7 @@
         &:checked{
             + .card-icon{
                 background: $second-color;
+                box-shadow: 0 0 0 5px $second-color;
                 color: $second-text-color;
                 transition: .5s ease-in background;
                 transition: .2s ease-in color;
