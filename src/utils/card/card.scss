@@ -1,0 +1,64 @@
+@import '../variables.scss';
+
+.card{
+    border: 1px solid $primary-border-color;
+    border-radius: 8px;
+    box-shadow: 0px 4px 7px 3px $primary-shadow ;
+    margin: 5px 20px;
+    position: relative;
+    &-icon,
+    & .btn{
+        position: absolute;
+        right: 10px;
+        bottom: 21px;
+    }
+    & .btn{
+        background: tomato;
+        border-color: tomato;
+        font-size: 12px;
+        bottom: 10px;
+    }
+    &-icon{
+        color: $primary-text-color;
+        font-style: normal;
+        font-size: 25px;
+        box-shadow: 0 0 0 5px $primary-shadow ;
+        width: 35px;
+        cursor: pointer;
+        height: 35px;
+        border-radius: 50%;
+        text-align: center;
+
+    }
+    & .card-content.-tag{
+        font-weight: 700;
+        color: $accend-color;
+    }
+    input.card-icon-check{
+        position: absolute;
+        cursor: pointer;
+        bottom: 5px;
+        right: 10px;
+        z-index: 10;
+        height: 25px;;
+        width: 25px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        &:visited,
+        &:focus{
+            outline: none;
+        }
+        &:checked{
+            + .card-icon{
+                background: $second-color;
+                color: $second-text-color;
+                transition: .5s ease-in background;
+                transition: .2s ease-in color;
+            }
+        }
+    }
+    &-titulo{
+        font-weight: 700;
+        margin: 10px 0 5px;
+    }
+}
