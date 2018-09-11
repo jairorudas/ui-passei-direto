@@ -13,7 +13,7 @@ export default class TabContent extends Component {
             <If show={this.state._id === this.props.active}>
                 <div className={this.props.col}>
                     {this.props.children}
-                    <Card data={this.props.data} id={this.state._id}/>
+                    <Card datas={this.props.data} id={this.state._id}/>
                 </div>
             </If>
         )
