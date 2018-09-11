@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import data from './data.json'
+import lt from 'localStorage'
+
+import Form from './utils/form/Form'
 import  TabContent from './utils/tabContent/TabContent'
 import Tabs from './utils/tabs/Tabs'
+import Loader from './utils/loader/load' 
 
 
 class App extends Component {
@@ -10,9 +13,9 @@ class App extends Component {
         super(props)
         this.state = { 
             active: 'Buscar', 
-            dataServer: data, 
-            input: '', 
-            favoritos: []
+            dataServer: [], 
+            input: '',
+            xhr: false
         }
         this.tabActive = this.tabActive.bind(this);
         this.searchString = this.searchString.bind(this)
@@ -26,18 +29,28 @@ class App extends Component {
     }
 
     changeString(e){
-        this.setState({...this.state, input: e.target.value })
+       this.setState({...this.state, input: e.target.value })
+       
     }
 
     searchString(e){
         e.preventDefault();
-        const params = this.state.input
-        //const url = 'https://search-api.passeidireto.com/api/Search/GlobalSearch?Query=teste&ContentTypeIds%5B%5D=1&PageNumber=0&PageSize=20&Order=2​'
-        // axios.get('./data.json')
-        //   .then( data => console.log(data))
-        //   .catch(err => console.log(err)) 
-        console.log(params);
+        this.setState({...this.state, xhr: true, dataServer: []})
+        const url = `https://passei-direto.herokuapp.com/${this.state.input}`;
+        axios.get(url)
+          .then( data => {
+            this.setState({...this.state, dataServer: data.data.Results})
+            this.setState({...this.state, xhr: false})
 
+          })
+          .catch(err => {
+            this.setState({...this.state, xhr: false})
+            console.log(err)
+          }) 
+    }
+
+    componentWillMount(){
+        lt.setItem('likes', JSON.stringify([]))
     }
 
   render() {
@@ -47,22 +60,16 @@ class App extends Component {
             <Tabs titulos={["Buscar", "Favoritos"]} onClick={this.tabActive} col="column column-25" active={this.state.active}/>      
         </div>
         <div className="row">
-            <TabContent id="Buscar" col="column" active={this.state.active}>
+            
+            <TabContent id="Buscar" 
+                        active={this.state.active} 
+                        data={this.state.dataServer}
+                        col="column">
+                <Form search={this.searchString} changeString={this.changeString} value={this.state.input}/>
+                <Loader loading={this.state.xhr} />
+            </TabContent>
 
-                <form className="column" onSubmit={this.searchString}>
-                    <label>Digite o material que deseja: </label>
-                    <div className="row">
-                        <input className="column column-67"
-                                type="text"
-                                onChange={this.changeString}
-                                name="buscar" 
-                                placeholder="Digite o material que deseja." />
-                        <input className="button column-25" type="submit" value="Buscar!"  />
-                    </div>
-                </form> 
-
-        </TabContent>
-        <TabContent id="Favoritos" col="column" active={this.state.active}/>  
+        <TabContent id="Favoritos" col="flex" active={this.state.active} />  
         </div>
      </div>
 
