@@ -12,7 +12,7 @@ export default (props) => {
                     value={props.value}
                     name="buscar" 
                     placeholder="Ex: Psicologia, Engenharia, Cozinha." />
-            <button className="button column-25" typeof="submit" >Buscar!</button>
+            <button className="button column-25" typeof="submit" >Buscar <span aria-label="Buscar" role="img"> 🔎</span> </button>
         </div>
     </form> 
   )
