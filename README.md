@@ -4,6 +4,6 @@
 inside the folder run 
 `npm install`
 
-## after install run 
+## After install run 
 `npm run start`
 
