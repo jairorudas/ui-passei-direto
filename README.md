@@ -1,9 +1,9 @@
-### Like material for Study
+# Like Project for Study
 
-# For start project 
+## For start project 
 inside the folder run 
 `npm install`
 
-# after install run 
+## after install run 
 `npm run start`
 
