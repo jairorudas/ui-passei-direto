@@ -6,9 +6,10 @@
     box-shadow: 0px 4px 7px 3px $primary-shadow ;
     margin: 10px 8px;
     position: relative;
-    padding: 0 5px;
+    padding: 5px 15px;
     min-width: 300px;
-    max-width: 320px;    
+    width: 320px; 
+    height: 180px;   
     &-icon,
     & .btn{
         position: absolute;
@@ -33,9 +34,16 @@
         text-align: center;
 
     }
+    & .card-content:not(.-tag){
+        overflow-y: auto;
+        height: 50px;
+    }
     & .card-content.-tag{
         font-weight: 700;
         color: $accend-color;
+        position: absolute;
+        left: 10px;
+        bottom: 0px;
     }
     input.card-icon-check{
         position: absolute;

@@ -8,7 +8,7 @@ import '../utilsClass.scss'
 export default class Card extends Component {
     constructor(props){
         super(props)
-        this.state = {data: props.data || []}
+        this.state = {data: props.datas || []}
     }
 
     like(item){
@@ -29,6 +29,11 @@ export default class Card extends Component {
         }))
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.datas.length >= 0){
+            this.setState({...this.state, data: nextProps.datas})
+        }
+    }
     componentWillMount(){
         if(this.props.id === 'Favoritos'){
             this.setState(state => ({
